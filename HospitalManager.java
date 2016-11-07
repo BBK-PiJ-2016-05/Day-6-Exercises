@@ -36,6 +36,7 @@ public class HospitalManager{
 			current = current.getNextPatient();
 		}
 		current.setNextPatient(newPatient);
+		newPatient.setPreviousPatient(current);
 	}
 
 	public boolean deletePatient(String name) {
@@ -44,12 +45,16 @@ public class HospitalManager{
 		}
 		if (firstPatient.getName().equals(name)) {
 			firstPatient = firstPatient.getNextPatient();
+			firstPatient.setPreviousPatient(null);
 			return true;
 		}
 		Patient current = firstPatient;
+		Patient newNextPatient = null;
 		while (current.getNextPatient() != null) {
 			if (current.getNextPatient().getName().equals(name)) {
-				current.setNextPatient(current.getNextPatient().getNextPatient());
+				newNextPatient = current.getNextPatient().getNextPatient();
+				current.setNextPatient(newNextPatient);
+				newNextPatient.setPreviousPatient(current);
 				return true;
 			}
 			current = current.getNextPatient();

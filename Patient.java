@@ -3,14 +3,21 @@ public class Patient {
 	private int age;
 	private String illness;
 	private Patient nextPatient;
+	private Patient previousPatient;
+	
 	public Patient(String name, int age, String illness) {
 		this.name = name;
 		this.age = age;
 		this.illness = illness;
 		this.nextPatient = null; // Pointer to another patient!
+		this.previousPatient = null;
 	}
 	public Patient getNextPatient (){
 		return this.nextPatient;
+	}
+	
+	public Patient getPreviousPatient(){
+		return this.previousPatient;
 	}
 	
 	public String getName(){
@@ -27,6 +34,10 @@ public class Patient {
 
 	public void setNextPatient(Patient nextPatient){
 		this.nextPatient = nextPatient;
+	}
+
+	public void setPreviousPatient(Patient previousPatient){
+		this.previousPatient = previousPatient;
 	}
 
 	public void setName(String name){
